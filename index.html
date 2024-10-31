@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="./public/bundle.js" defer></script>
+		<link rel="stylesheet" href="./public/bundle.css" />
+		<title>App de peliculas</title>
+	</head>
+	<body>
+		<div class="contenedor">
+			<aside class="sidebar">
+				<div class="sidebar__logo">
+					<img class="sidebar__logo-imagen" src="./img/logo.png" alt="" />
+				</div>
+
+				<div class="sidebar__generos">
+					<form class="sidebar__titulo" name="formul">
+						ordenar por:
+						<select name="miSelect">
+							<option value="1" selected>popularidad</option>
+							<option value="2">Mas recientes primero</option>
+							<option value="3">Mas antiguas primero</option>
+							<option value="4">Alfabeticamente ascendente</option>
+							<option value="5">Alfabeticamente descendente</option>
+						</select>
+					</form>
+					<h2 class="sidebar__titulo">Generos</h2>
+					<div class="sidebar__contenedor-generos" id="filtro-generos">
+						<!-- <button class="btn">Aventuras</button>
+						<button class="btn">Sci-fi</button>
+						<button class="btn">Comedia</button>
+						<button class="btn">Fantasía</button>
+						<button class="btn">Musical</button> -->
+					</div>
+				</div>
+
+				<div class="sidebar__años">
+					<h3 class="sidebar__titulo">Años</h3>
+					<div class="sidebar__contenedor-inputs">
+						<input
+							class="sidebar__input"
+							id="años-min"
+							type="number"
+							min="1950"
+							max="2024"
+							maxlength="4"
+							placeholder="1950"
+						/>
+						<span> - </span>
+						<input
+							class="sidebar__input"
+							id="años-max"
+							type="number"
+							min="1950"
+							max="2024"
+							value="2024"
+							maxlength="4"
+							placeholder="2022"
+						/>
+					</div>
+				</div>
+
+				<div class="sidebar__buscar" id="btn-buscar">
+					<button class="btn btn--100 btn--color">Buscar</button>
+				</div>
+			</aside>
+
+			<main class="main">
+				<div class="main__filtros">
+					<button
+						style="text-align: right"
+						class="btn btn--tipo btn--active"
+						id="movie"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+						>
+							<path d="M3 22V2l18 10-18 10z" />
+						</svg>
+						Peliculas
+					</button>
+					<button class="btn btn--tipo" id="tv">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+						>
+							<path
+								d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v12h16V6H4zm1 14h14v2H5v-2z"
+							/>
+						</svg>
+
+						Series
+					</button>
+					<!-- codigo para la barra de ordenamiento-->
+				</div>
+
+				<!--codigo para el cone-->
+				<div class="main__populares" id="populares" data-pagina="1">
+					<h2 class="main__titulo">Peliculas Populares</h2>
+					<div class="main__grid">
+						<!-- <div class="main__media">
+							<a href="#" class="main__media-thumb">
+								<img class="main__media-img" src="./img/1.png" alt="" />
+							</a>
+							<p class="main__media-titulo">The boys</p>
+							<p class="main__media-fecha">2021</p>
+						</div> -->
+					</div>
+				</div>
+
+				<div class="main__paginacion">
+					<button class="btn" id="pagina-anterior">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							fill="currentColor"
+							class="btn__icono"
+							viewBox="0 0 16 16"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+							/>
+						</svg>
+						Anterior
+					</button>
+					<button class="btn" id="pagina-siguiente">
+						Siguiente
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							fill="currentColor"
+							class="btn__icono"
+							viewBox="0 0 16 16"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+							/>
+						</svg>
+					</button>
+				</div>
+			</main>
+
+			<section class="media" id="media">
+				<div class="media__contenedor">
+					<!-- <div class="media__backdrop">
+						<img
+							src="https://image.tmdb.org/t/p/w500//jsoz1HlxczSuTx0mDl2h0lxy36l.jpg"
+							class="media__backdrop-image"
+						/>
+					</div>
+					<div class="media__imagen">
+						<img
+							src="https://image.tmdb.org/t/p/w500//4GVIfQVABjKuAWy3fvidPJZE52t.jpg"
+							class="media__poster"
+						/>
+					</div>
+					<div class="media__info">
+						<h1 class="media__titulo">Titulo</h1>
+						<p class="media__fecha">2022</p>
+						<p class="media__overview">Lorem ipsum dolor sit amet.</p>
+					</div>
+					<button class="media__btn">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="16"
+							height="16"
+							fill="currentColor"
+							viewBox="0 0 16 16"
+							class="media__btn-icono"
+						>
+							<path
+								d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"
+							/>
+						</svg>
+					</button> -->
+				</div>
+			</section>
+		</div>
+	</body>
+</html>
